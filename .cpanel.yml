@@ -1,6 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/stikysof/dev02.stikysoft.hu/
-    - /usr/local/bin/composer install
-    - /bin/cp -R * $DEPLOYPATH
