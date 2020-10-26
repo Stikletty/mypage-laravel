@@ -4,10 +4,17 @@ dist: precise
 language: php
 
 php:
+<<<<<<< HEAD
   - nightly
 
 addons:
   mariadb: 10.5
+=======
+  - 7.2
+
+addons:
+  mariadb: 10.4
+>>>>>>> c47d976debb1ecaaa03542b80ec80eac03029b6a
 
 cache:
   directories:
