@@ -4,7 +4,7 @@ dist: precise
 language: php
 
 php:
-  - 7.4
+  - nightly
 
 addons:
   mariadb: 10.5
