@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/run-migrations', function () {
+    Artisan::call('migrate', ["--force" => true ]);
+    Artisan::call('db:seed');
+    return;
+});
 
 Route::get('/', function () {
     return view('welcome');
