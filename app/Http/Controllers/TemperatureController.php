@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 
 class TemperatureController extends Controller
 {
     //
-      /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -26,7 +27,11 @@ class TemperatureController extends Controller
     {
 
         $client = new \GuzzleHttp\Client();
-        $request = $client->get('api.openweathermap.org/data/2.5/weather?q=Tatabánya&appid=ede968f60c53a3e967b1a84764656232&mode=json&units=metric');
+        if (!\is_null(env('WEATHER_API_KEY'))) {
+            $request = $client->get('api.openweathermap.org/data/2.5/weather?q=Tatabánya&appid=' . \env('WEATHER_API_KEY') . '&mode=json&units=metric');
+        } else {
+            throw new Exception('Missing WEATHER_API_KEY environment variable.');
+        }
         $response = $request->getBody();
         $datas['weather'] = json_decode($response, true);
 
