@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Stikysoft',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Stikysoft</b>Site',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Stikysoft',
 
     /*
     |--------------------------------------------------------------------------
@@ -242,11 +242,17 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
+            'text'        => 'DashBoard',
+            'url'         => 'home',
+            'icon'        => 'fal fa-tachometer-alt-slow',
             'label'       => 4,
             'label_color' => 'success',
+        ],
+        ['header' => 'Temperature'],
+        [
+            'text' => 'Current Datas',
+            'url'  => 'temperature/current',
+            'icon' => 'fas fa-thermometer-three-quarters',
         ],
         ['header' => 'account_settings'],
         [

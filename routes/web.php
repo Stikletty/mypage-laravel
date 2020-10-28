@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TemperatureController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/run-migrations', function () {
-    Artisan::call('migrate', ["--force" => true ]);
+    Artisan::call('migrate', ["--force" => true]);
     Artisan::call('db:seed');
     return;
 });
@@ -27,14 +28,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', function() {
+Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::group(['prefix' => 'temperature'], function () {
+    Route::get('current', [TemperatureController::class, 'current'])->name('currenttemp')->middleware('auth');
+});
