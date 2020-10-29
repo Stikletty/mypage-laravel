@@ -2,10 +2,13 @@ name: Laravel
 
 on:
   push:
-    branches: [ staging ]
+    branches:
+      - staging
   pull_request:
-    branches: [ staging ]
-    types: [closed]
+    branches:
+      - staging
+    types:
+      - closed
 
 jobs:
   laravel-tests:
@@ -28,14 +31,14 @@ jobs:
         ftp-server: ${{ secrets.FTPURL }}
         ftp-username: ${{ secrets.FTPUSER }}
         ftp-password: ${{ secrets.FTPPASSWORD }}
-    - name: Deploy Stage
+    - name: Call migration
       uses: fjogeleit/http-request-action@master
       with:
           url: ${{ secrets.URL_MIGRATION }}
           method: 'GET'
-    - name: send custom message with args
+    - name: send telegram message
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: The ${{ github.event_name }} event triggered and job status is ${{ job.status }}
+        args: The ${{ github.workflow }} (${{ github.job }}) on ${{ github.repository }}- ${{ github.event_name }} event triggered and job status is ${{ job.status }}
