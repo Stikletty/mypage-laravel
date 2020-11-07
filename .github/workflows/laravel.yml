@@ -31,11 +31,6 @@ jobs:
         ftp-server: ${{ secrets.FTPURL }}
         ftp-username: ${{ secrets.FTPUSER }}
         ftp-password: ${{ secrets.FTPPASSWORD }}
-    - name: Call migration
-      uses: fjogeleit/http-request-action@master
-      with:
-          url: ${{ secrets.URL_MIGRATION }}
-          method: 'GET'
     - name: send telegram message
       uses: appleboy/telegram-action@master
       with:
